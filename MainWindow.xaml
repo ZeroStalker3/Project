@@ -5,8 +5,66 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Project"
         mc:Ignorable="d"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        MouseLeftButtonDown="MainWindow_OnMouseLeftButtonDown"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="410"/>
+        </Grid.RowDefinitions>
+
+        <!--Начало разметки приложения-->
+        <StackPanel 
+            VerticalAlignment="Top"
+            Orientation="Horizontal">
+            <Button
+                Name="Exit"
+                Click="Exit_OnClick"
+                Style="{StaticResource windowsPanel}">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Border
+                            CornerRadius="10"
+                            Background="Red"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button
+                Margin="0,5,0,5"
+                Name="Resize"
+                Click="Resize_OnClick"
+                Style="{StaticResource windowsPanel}">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Border
+                            CornerRadius="10"
+                            Background="Green"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button 
+                Name="Min"
+                Click="Min_OnClick"
+                Style="{StaticResource windowsPanel}">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Border
+                            CornerRadius="10"
+                            Background="Yellow"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </StackPanel>
+        <!--Конец разметки приложения-->
+
+        <!--Начало тела приложения-->
+        <Frame 
+            NavigationUIVisibility="Hidden"
+            Name="FrmMain"
+            Grid.Row="1"
+            Grid.Column="0"/>
+        <!--Начало тела приложения-->
     </Grid>
 </Window>

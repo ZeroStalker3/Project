@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2135f58ce3114f75ae88c694bc6d54af" Name="Diagram1">
+        <EntityTypeShape EntityType="ProjectEducationalPracticeModel.Client" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectEducationalPracticeModel.Equipment" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectEducationalPracticeModel.Fault" Width="1.5" PointX="0.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectEducationalPracticeModel.Performer" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectEducationalPracticeModel.Priority" Width="1.5" PointX="0.75" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectEducationalPracticeModel.Repair_request" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectEducationalPracticeModel.Report" Width="1.5" PointX="0.75" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectEducationalPracticeModel.Resources" Width="1.5" PointX="5.25" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectEducationalPracticeModel.Role" Width="1.5" PointX="5.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectEducationalPracticeModel.Status" Width="1.5" PointX="0.75" PointY="18.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectEducationalPracticeModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectEducationalPracticeModel.User" Width="1.5" PointX="8" PointY="5.875" IsExpanded="true" />
+        <AssociationConnector Association="ProjectEducationalPracticeModel.FK_Repair_request_Client" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectEducationalPracticeModel.FK_Repair_request_Equipment1" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectEducationalPracticeModel.FK_Repair_request_Fault" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectEducationalPracticeModel.FK_Repair_request_Performer" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectEducationalPracticeModel.FK_Repair_request_Priority" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectEducationalPracticeModel.FK_Repair_request_Report" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectEducationalPracticeModel.FK_Repair_request_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectEducationalPracticeModel.FK_Resources_Repair_request" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectEducationalPracticeModel.FK_User_Role" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
