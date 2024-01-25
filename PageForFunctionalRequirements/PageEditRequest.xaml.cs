@@ -26,28 +26,28 @@ namespace Project.PageForFunctionalRequirements
         {
             InitializeComponent();
 
-           
+            ComboBox.SelectedValuePath = "Id";
+            ComboBox.DisplayMemberPath = "Serial_Number";
+            ComboBox.ItemsSource = OdbConnectorHelper.entObj.Repair_request.ToList();
+
         }
 
         private void Update_OnClick(object sender, RoutedEventArgs e)
         {
-            //try
-            //{
-                
 
-            //}
-            //catch (Exception ex)
-            //{
-            //OdbConnectorHelper.entObj.Database.Log = s => Debug.WriteLine(s);
-            //MessageBox.Show("Критический сбор в работе приложения " + ex.Message.ToString(), "Уведомление",
-            //    MessageBoxButton.OK,
-            //    MessageBoxImage.Warning);
-            //}
         }
 
         private void Back_OnClick(object sender, RoutedEventArgs e)
         {
             FrameApp.frmObj.GoBack();
+        }
+
+        private void ComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int select = Convert.ToInt32(ComboBox.SelectedValue);
+            List.ItemsSource = OdbConnectorHelper.entObj.Repair_request.Where(x => x.Id == select).ToList();
+            List.SelectedIndex = 0;
+            OdbConnectorHelper.entObj.SaveChanges();
         }
     }
 }

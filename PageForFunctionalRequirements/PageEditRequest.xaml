@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Project.PageForFunctionalRequirements"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="350" d:DesignWidth="800"
       Title="PageEditRequest">
 
     <Grid>
@@ -19,32 +19,49 @@
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 >
-                <TextBlock
-                Text="Редактирование заявок"
-                Height="50"
-                FontSize="20pt"/>
-            <DataGrid
-                AutoGenerateColumns="False"
-                IsReadOnly="True"
-                VerticalScrollBarVisibility="Auto"
-                Height="220"
-                Name="ListStudent">
+                <StackPanel>
+                    <TextBlock
+                        Text="Редактирование заявок "
+                        Height="25"
+                        FontSize="12pt"/>
+                    <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Выберите заявку: "/>
+                    <ComboBox 
+                        Margin="0"
+                        Name="ComboBox"
+                        SelectionChanged="ComboBox_OnSelectionChanged"/>
+                </StackPanel>
+                    </StackPanel>
+                <DataGrid
+                    AutoGenerateColumns="False"
+                    HorizontalAlignment="Center"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    VerticalScrollBarVisibility="Auto"
+                    ClipboardCopyMode="None"
+                    CanUserResizeColumns="False"
+                    CanUserReorderColumns="False"
+                    Height="220"
+                    Name="List">
                     <DataGrid.Columns>
-                        <DataGridTextColumn 
+                        <DataGridTextColumn
                             Width="*"
                             Header="Описание проблемы"
-                            Binding ="{Binding Description_Problems}"/>
-                        <DataGridTextColumn 
-                        Width="*"
-                        Header="Этап выполнения работы"
-                        Binding ="{Binding }"/>
-                    <DataGridTextColumn 
-                        Width="*"
-                        Header="Ответственный за работу"
-                        Binding ="{Binding }"/>
-                </DataGrid.Columns>
-            </DataGrid>
-                </StackPanel>
+                            Binding="{Binding Description_Problems}"/>
+
+                        <DataGridTextColumn
+                            Width="*"
+                            Header="Этапы выполнения"
+                            Binding="{Binding Status.Name}"/>
+
+                        <DataGridTextColumn
+                            Width="*"
+                            Header="Ответственный за работу"
+                            Binding="{Binding Performer.Name}"/>
+                        
+                    </DataGrid.Columns>
+                </DataGrid>
+</StackPanel>
         </Grid>
     </Grid>
 </Page>
