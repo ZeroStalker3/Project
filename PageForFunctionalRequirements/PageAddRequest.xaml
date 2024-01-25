@@ -32,7 +32,7 @@
                     Width="150"
                     Text="Дата обновления"
                 />
-                <DatePicker Name="CmbSpecial"/>
+                <TextBox Name="DatePicker"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal">
@@ -52,7 +52,7 @@
                 />
                 <ComboBox 
                     Margin="0"
-                    Name=""/>
+                    Name="FaultC"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal">
@@ -65,7 +65,14 @@
                     Width="150"
                     Name ="ProblemDescription"/>
             </StackPanel>
-
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Width="150" Text="Клиент"/>
+                <TextBox Name="Client"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock  Width="150" Text="Статус заявки"/>
+                <ComboBox  Margin="0" Name="Status"/>
+            </StackPanel>
             <Button 
                 Content="Добавить заявок"
                 Name="Add"

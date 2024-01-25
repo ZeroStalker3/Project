@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Project.DataFilesApp;
+using Project.PageForFunctionalRequirements;
 
 namespace Project.MainPage
 {
@@ -27,7 +29,17 @@ namespace Project.MainPage
 
         private void BtnAddRequest_OnClick(object sender, RoutedEventArgs e)
         {
-            
+            FrameApp.frmObj.Navigate(new PageAddRequest());
+        }
+
+        private void EditRequest_OnClick(object sender, RoutedEventArgs e)
+        {
+            FrameApp.frmObj.Navigate(new PageEditRequest());
+        }
+
+        private void Back_OnClick(object sender, RoutedEventArgs e)
+        {
+            FrameApp.frmObj.GoBack();
         }
     }
 }

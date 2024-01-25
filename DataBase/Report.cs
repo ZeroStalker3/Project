@@ -21,9 +21,7 @@ namespace Project.DataBase
         }
     
         public int Id { get; set; }
-        public string Expenses { get; set; }
         public string Description { get; set; }
-        public System.TimeSpan Time__spent { get; set; }
         public System.DateTime Date { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

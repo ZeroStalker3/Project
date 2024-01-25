@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ProjectEducationalPracticeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ProjectEducationalPracticeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Client">
           <Key>
             <PropertyRef Name="Id" />
@@ -18,7 +18,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Number" Type="int" Nullable="false" />
-          <Property Name="Name" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Fault">
           <Key>
@@ -46,24 +46,22 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Type_Equipment" Type="int" Nullable="false" />
           <Property Name="Serial_Number" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Description_Problems" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Id_Performer" Type="int" Nullable="false" />
+          <Property Name="Id_Performer" Type="int" />
           <Property Name="Id_Fault" Type="int" Nullable="false" />
           <Property Name="Id_Client" Type="int" Nullable="false" />
-          <Property Name="Id_Prioriry" Type="int" Nullable="false" />
+          <Property Name="Id_Prioriry" Type="int" />
           <Property Name="Id_Status" Type="int" Nullable="false" />
           <Property Name="Id_Report" Type="int" Nullable="false" />
+          <Property Name="Id_Equipment" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Report">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Expenses" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Time _spent" Type="time" Precision="2" Nullable="false" />
           <Property Name="Date" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Resources">
@@ -121,7 +119,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Repair_request_Equipment1">
+        <Association Name="FK_Repair_request_Equipment">
           <End Role="Equipment" Type="Self.Equipment" Multiplicity="1" />
           <End Role="Repair_request" Type="Self.Repair_request" Multiplicity="*" />
           <ReferentialConstraint>
@@ -129,7 +127,7 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Repair_request">
-              <PropertyRef Name="Type_Equipment" />
+              <PropertyRef Name="Id_Equipment" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -146,7 +144,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Repair_request_Performer">
-          <End Role="Performer" Type="Self.Performer" Multiplicity="1" />
+          <End Role="Performer" Type="Self.Performer" Multiplicity="0..1" />
           <End Role="Repair_request" Type="Self.Repair_request" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Performer">
@@ -158,7 +156,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Repair_request_Priority">
-          <End Role="Priority" Type="Self.Priority" Multiplicity="1" />
+          <End Role="Priority" Type="Self.Priority" Multiplicity="0..1" />
           <End Role="Repair_request" Type="Self.Repair_request" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Priority">
@@ -234,7 +232,7 @@
             <End Role="Client" EntitySet="Client" />
             <End Role="Repair_request" EntitySet="Repair_request" />
           </AssociationSet>
-          <AssociationSet Name="FK_Repair_request_Equipment1" Association="Self.FK_Repair_request_Equipment1">
+          <AssociationSet Name="FK_Repair_request_Equipment" Association="Self.FK_Repair_request_Equipment">
             <End Role="Equipment" EntitySet="Equipment" />
             <End Role="Repair_request" EntitySet="Repair_request" />
           </AssociationSet>
@@ -267,18 +265,67 @@
             <End Role="User" EntitySet="User" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ProjectEducationalPracticeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ProjectEducationalPracticeEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Client" EntityType="ProjectEducationalPracticeModel.Client" />
+          <EntitySet Name="Equipment" EntityType="ProjectEducationalPracticeModel.Equipment" />
+          <EntitySet Name="Fault" EntityType="ProjectEducationalPracticeModel.Fault" />
+          <EntitySet Name="Performer" EntityType="ProjectEducationalPracticeModel.Performer" />
+          <EntitySet Name="Priority" EntityType="ProjectEducationalPracticeModel.Priority" />
+          <EntitySet Name="Repair_request" EntityType="ProjectEducationalPracticeModel.Repair_request" />
+          <EntitySet Name="Report" EntityType="ProjectEducationalPracticeModel.Report" />
+          <EntitySet Name="Resources" EntityType="ProjectEducationalPracticeModel.Resources" />
+          <EntitySet Name="Role" EntityType="ProjectEducationalPracticeModel.Role" />
+          <EntitySet Name="Status" EntityType="ProjectEducationalPracticeModel.Status" />
+          <EntitySet Name="sysdiagrams" EntityType="ProjectEducationalPracticeModel.sysdiagrams" />
+          <EntitySet Name="User" EntityType="ProjectEducationalPracticeModel.User" />
+          <AssociationSet Name="FK_Repair_request_Client" Association="ProjectEducationalPracticeModel.FK_Repair_request_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Repair_request" EntitySet="Repair_request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Repair_request_Equipment" Association="ProjectEducationalPracticeModel.FK_Repair_request_Equipment">
+            <End Role="Equipment" EntitySet="Equipment" />
+            <End Role="Repair_request" EntitySet="Repair_request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Repair_request_Fault" Association="ProjectEducationalPracticeModel.FK_Repair_request_Fault">
+            <End Role="Fault" EntitySet="Fault" />
+            <End Role="Repair_request" EntitySet="Repair_request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Repair_request_Performer" Association="ProjectEducationalPracticeModel.FK_Repair_request_Performer">
+            <End Role="Performer" EntitySet="Performer" />
+            <End Role="Repair_request" EntitySet="Repair_request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Repair_request_Priority" Association="ProjectEducationalPracticeModel.FK_Repair_request_Priority">
+            <End Role="Priority" EntitySet="Priority" />
+            <End Role="Repair_request" EntitySet="Repair_request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Repair_request_Report" Association="ProjectEducationalPracticeModel.FK_Repair_request_Report">
+            <End Role="Report" EntitySet="Report" />
+            <End Role="Repair_request" EntitySet="Repair_request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Repair_request_Status" Association="ProjectEducationalPracticeModel.FK_Repair_request_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Repair_request" EntitySet="Repair_request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Resources_Repair_request" Association="ProjectEducationalPracticeModel.FK_Resources_Repair_request">
+            <End Role="Repair_request" EntitySet="Repair_request" />
+            <End Role="Resources" EntitySet="Resources" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Role" Association="ProjectEducationalPracticeModel.FK_User_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="Client">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Repair_request" Relationship="Self.FK_Repair_request_Client" FromRole="Client" ToRole="Repair_request" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Repair_request" Relationship="ProjectEducationalPracticeModel.FK_Repair_request_Client" FromRole="Client" ToRole="Repair_request" />
         </EntityType>
         <EntityType Name="Equipment">
           <Key>
@@ -286,99 +333,97 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Number" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Repair_request" Relationship="Self.FK_Repair_request_Equipment1" FromRole="Equipment" ToRole="Repair_request" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Repair_request" Relationship="ProjectEducationalPracticeModel.FK_Repair_request_Equipment" FromRole="Equipment" ToRole="Repair_request" />
         </EntityType>
         <EntityType Name="Fault">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Repair_request" Relationship="Self.FK_Repair_request_Fault" FromRole="Fault" ToRole="Repair_request" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Repair_request" Relationship="ProjectEducationalPracticeModel.FK_Repair_request_Fault" FromRole="Fault" ToRole="Repair_request" />
         </EntityType>
         <EntityType Name="Performer">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Repair_request" Relationship="Self.FK_Repair_request_Performer" FromRole="Performer" ToRole="Repair_request" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Repair_request" Relationship="ProjectEducationalPracticeModel.FK_Repair_request_Performer" FromRole="Performer" ToRole="Repair_request" />
         </EntityType>
         <EntityType Name="Priority">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Repair_request" Relationship="Self.FK_Repair_request_Priority" FromRole="Priority" ToRole="Repair_request" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Repair_request" Relationship="ProjectEducationalPracticeModel.FK_Repair_request_Priority" FromRole="Priority" ToRole="Repair_request" />
         </EntityType>
         <EntityType Name="Repair_request">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Type_Equipment" Type="Int32" Nullable="false" />
-          <Property Name="Serial_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Description_Problems" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Id_Performer" Type="Int32" Nullable="false" />
+          <Property Name="Serial_Number" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description_Problems" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Id_Performer" Type="Int32" />
           <Property Name="Id_Fault" Type="Int32" Nullable="false" />
           <Property Name="Id_Client" Type="Int32" Nullable="false" />
-          <Property Name="Id_Prioriry" Type="Int32" Nullable="false" />
+          <Property Name="Id_Prioriry" Type="Int32" />
           <Property Name="Id_Status" Type="Int32" Nullable="false" />
           <Property Name="Id_Report" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Client" Relationship="Self.FK_Repair_request_Client" FromRole="Repair_request" ToRole="Client" />
-          <NavigationProperty Name="Equipment" Relationship="Self.FK_Repair_request_Equipment1" FromRole="Repair_request" ToRole="Equipment" />
-          <NavigationProperty Name="Fault" Relationship="Self.FK_Repair_request_Fault" FromRole="Repair_request" ToRole="Fault" />
-          <NavigationProperty Name="Performer" Relationship="Self.FK_Repair_request_Performer" FromRole="Repair_request" ToRole="Performer" />
-          <NavigationProperty Name="Priority" Relationship="Self.FK_Repair_request_Priority" FromRole="Repair_request" ToRole="Priority" />
-          <NavigationProperty Name="Report" Relationship="Self.FK_Repair_request_Report" FromRole="Repair_request" ToRole="Report" />
-          <NavigationProperty Name="Status" Relationship="Self.FK_Repair_request_Status" FromRole="Repair_request" ToRole="Status" />
-          <NavigationProperty Name="Resources" Relationship="Self.FK_Resources_Repair_request" FromRole="Repair_request" ToRole="Resources" />
+          <Property Name="Id_Equipment" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Client" Relationship="ProjectEducationalPracticeModel.FK_Repair_request_Client" FromRole="Repair_request" ToRole="Client" />
+          <NavigationProperty Name="Equipment" Relationship="ProjectEducationalPracticeModel.FK_Repair_request_Equipment" FromRole="Repair_request" ToRole="Equipment" />
+          <NavigationProperty Name="Fault" Relationship="ProjectEducationalPracticeModel.FK_Repair_request_Fault" FromRole="Repair_request" ToRole="Fault" />
+          <NavigationProperty Name="Performer" Relationship="ProjectEducationalPracticeModel.FK_Repair_request_Performer" FromRole="Repair_request" ToRole="Performer" />
+          <NavigationProperty Name="Priority" Relationship="ProjectEducationalPracticeModel.FK_Repair_request_Priority" FromRole="Repair_request" ToRole="Priority" />
+          <NavigationProperty Name="Report" Relationship="ProjectEducationalPracticeModel.FK_Repair_request_Report" FromRole="Repair_request" ToRole="Report" />
+          <NavigationProperty Name="Status" Relationship="ProjectEducationalPracticeModel.FK_Repair_request_Status" FromRole="Repair_request" ToRole="Status" />
+          <NavigationProperty Name="Resources" Relationship="ProjectEducationalPracticeModel.FK_Resources_Repair_request" FromRole="Repair_request" ToRole="Resources" />
         </EntityType>
         <EntityType Name="Report">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Expenses" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Time__spent" Type="Time" Nullable="false" Precision="2" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Repair_request" Relationship="Self.FK_Repair_request_Report" FromRole="Report" ToRole="Repair_request" />
+          <NavigationProperty Name="Repair_request" Relationship="ProjectEducationalPracticeModel.FK_Repair_request_Report" FromRole="Report" ToRole="Repair_request" />
         </EntityType>
         <EntityType Name="Resources">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Price" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Price" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Id_Repair_reauest" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Quantity" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Repair_request" Relationship="Self.FK_Resources_Repair_request" FromRole="Resources" ToRole="Repair_request" />
+          <NavigationProperty Name="Repair_request" Relationship="ProjectEducationalPracticeModel.FK_Resources_Repair_request" FromRole="Resources" ToRole="Repair_request" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="User" Relationship="Self.FK_User_Role" FromRole="Role" ToRole="User" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="ProjectEducationalPracticeModel.FK_User_Role" FromRole="Role" ToRole="User" />
         </EntityType>
         <EntityType Name="Status">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Repair_request" Relationship="Self.FK_Repair_request_Status" FromRole="Status" ToRole="Repair_request" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Repair_request" Relationship="ProjectEducationalPracticeModel.FK_Repair_request_Status" FromRole="Status" ToRole="Repair_request" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="principal_id" Type="Int32" Nullable="false" />
           <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="Int32" />
@@ -389,14 +434,14 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="IdRole" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
+          <NavigationProperty Name="Role" Relationship="ProjectEducationalPracticeModel.FK_User_Role" FromRole="User" ToRole="Role" />
         </EntityType>
         <Association Name="FK_Repair_request_Client">
-          <End Role="Client" Type="Self.Client" Multiplicity="1" />
-          <End Role="Repair_request" Type="Self.Repair_request" Multiplicity="*" />
+          <End Type="ProjectEducationalPracticeModel.Client" Role="Client" Multiplicity="1" />
+          <End Type="ProjectEducationalPracticeModel.Repair_request" Role="Repair_request" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Client">
               <PropertyRef Name="Id" />
@@ -406,21 +451,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Repair_request_Equipment1">
-          <End Role="Equipment" Type="Self.Equipment" Multiplicity="1" />
-          <End Role="Repair_request" Type="Self.Repair_request" Multiplicity="*" />
+        <Association Name="FK_Repair_request_Equipment">
+          <End Type="ProjectEducationalPracticeModel.Equipment" Role="Equipment" Multiplicity="1" />
+          <End Type="ProjectEducationalPracticeModel.Repair_request" Role="Repair_request" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Equipment">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Repair_request">
-              <PropertyRef Name="Type_Equipment" />
+              <PropertyRef Name="Id_Equipment" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Repair_request_Fault">
-          <End Role="Fault" Type="Self.Fault" Multiplicity="1" />
-          <End Role="Repair_request" Type="Self.Repair_request" Multiplicity="*" />
+          <End Type="ProjectEducationalPracticeModel.Fault" Role="Fault" Multiplicity="1" />
+          <End Type="ProjectEducationalPracticeModel.Repair_request" Role="Repair_request" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Fault">
               <PropertyRef Name="Id" />
@@ -431,8 +476,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Repair_request_Performer">
-          <End Role="Performer" Type="Self.Performer" Multiplicity="1" />
-          <End Role="Repair_request" Type="Self.Repair_request" Multiplicity="*" />
+          <End Type="ProjectEducationalPracticeModel.Performer" Role="Performer" Multiplicity="0..1" />
+          <End Type="ProjectEducationalPracticeModel.Repair_request" Role="Repair_request" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Performer">
               <PropertyRef Name="Id" />
@@ -443,8 +488,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Repair_request_Priority">
-          <End Role="Priority" Type="Self.Priority" Multiplicity="1" />
-          <End Role="Repair_request" Type="Self.Repair_request" Multiplicity="*" />
+          <End Type="ProjectEducationalPracticeModel.Priority" Role="Priority" Multiplicity="0..1" />
+          <End Type="ProjectEducationalPracticeModel.Repair_request" Role="Repair_request" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Priority">
               <PropertyRef Name="Id" />
@@ -455,8 +500,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Repair_request_Report">
-          <End Role="Report" Type="Self.Report" Multiplicity="1" />
-          <End Role="Repair_request" Type="Self.Repair_request" Multiplicity="*" />
+          <End Type="ProjectEducationalPracticeModel.Report" Role="Report" Multiplicity="1" />
+          <End Type="ProjectEducationalPracticeModel.Repair_request" Role="Repair_request" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Report">
               <PropertyRef Name="Id" />
@@ -467,8 +512,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Repair_request_Status">
-          <End Role="Status" Type="Self.Status" Multiplicity="1" />
-          <End Role="Repair_request" Type="Self.Repair_request" Multiplicity="*" />
+          <End Type="ProjectEducationalPracticeModel.Status" Role="Status" Multiplicity="1" />
+          <End Type="ProjectEducationalPracticeModel.Repair_request" Role="Repair_request" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Status">
               <PropertyRef Name="Id" />
@@ -479,8 +524,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Resources_Repair_request">
-          <End Role="Repair_request" Type="Self.Repair_request" Multiplicity="1" />
-          <End Role="Resources" Type="Self.Resources" Multiplicity="*" />
+          <End Type="ProjectEducationalPracticeModel.Repair_request" Role="Repair_request" Multiplicity="1" />
+          <End Type="ProjectEducationalPracticeModel.Resources" Role="Resources" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Repair_request">
               <PropertyRef Name="Id" />
@@ -491,8 +536,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_User_Role">
-          <End Role="Role" Type="Self.Role" Multiplicity="1" />
-          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <End Type="ProjectEducationalPracticeModel.Role" Role="Role" Multiplicity="1" />
+          <End Type="ProjectEducationalPracticeModel.User" Role="User" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Role">
               <PropertyRef Name="Id" />
@@ -502,57 +547,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ProjectEducationalPracticeEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Client" EntityType="Self.Client" />
-          <EntitySet Name="Equipment" EntityType="Self.Equipment" />
-          <EntitySet Name="Fault" EntityType="Self.Fault" />
-          <EntitySet Name="Performer" EntityType="Self.Performer" />
-          <EntitySet Name="Priority" EntityType="Self.Priority" />
-          <EntitySet Name="Repair_request" EntityType="Self.Repair_request" />
-          <EntitySet Name="Report" EntityType="Self.Report" />
-          <EntitySet Name="Resources" EntityType="Self.Resources" />
-          <EntitySet Name="Role" EntityType="Self.Role" />
-          <EntitySet Name="Status" EntityType="Self.Status" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <EntitySet Name="User" EntityType="Self.User" />
-          <AssociationSet Name="FK_Repair_request_Client" Association="Self.FK_Repair_request_Client">
-            <End Role="Client" EntitySet="Client" />
-            <End Role="Repair_request" EntitySet="Repair_request" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Repair_request_Equipment1" Association="Self.FK_Repair_request_Equipment1">
-            <End Role="Equipment" EntitySet="Equipment" />
-            <End Role="Repair_request" EntitySet="Repair_request" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Repair_request_Fault" Association="Self.FK_Repair_request_Fault">
-            <End Role="Fault" EntitySet="Fault" />
-            <End Role="Repair_request" EntitySet="Repair_request" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Repair_request_Performer" Association="Self.FK_Repair_request_Performer">
-            <End Role="Performer" EntitySet="Performer" />
-            <End Role="Repair_request" EntitySet="Repair_request" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Repair_request_Priority" Association="Self.FK_Repair_request_Priority">
-            <End Role="Priority" EntitySet="Priority" />
-            <End Role="Repair_request" EntitySet="Repair_request" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Repair_request_Report" Association="Self.FK_Repair_request_Report">
-            <End Role="Report" EntitySet="Report" />
-            <End Role="Repair_request" EntitySet="Repair_request" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Repair_request_Status" Association="Self.FK_Repair_request_Status">
-            <End Role="Status" EntitySet="Status" />
-            <End Role="Repair_request" EntitySet="Repair_request" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Resources_Repair_request" Association="Self.FK_Resources_Repair_request">
-            <End Role="Repair_request" EntitySet="Repair_request" />
-            <End Role="Resources" EntitySet="Resources" />
-          </AssociationSet>
-          <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
-            <End Role="Role" EntitySet="Role" />
-            <End Role="User" EntitySet="User" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -561,116 +556,114 @@
           <EntitySetMapping Name="Client">
             <EntityTypeMapping TypeName="ProjectEducationalPracticeModel.Client">
               <MappingFragment StoreEntitySet="Client">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Equipment">
             <EntityTypeMapping TypeName="ProjectEducationalPracticeModel.Equipment">
               <MappingFragment StoreEntitySet="Equipment">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Number" ColumnName="Number" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Fault">
             <EntityTypeMapping TypeName="ProjectEducationalPracticeModel.Fault">
               <MappingFragment StoreEntitySet="Fault">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Performer">
             <EntityTypeMapping TypeName="ProjectEducationalPracticeModel.Performer">
               <MappingFragment StoreEntitySet="Performer">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Priority">
             <EntityTypeMapping TypeName="ProjectEducationalPracticeModel.Priority">
               <MappingFragment StoreEntitySet="Priority">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Repair_request">
             <EntityTypeMapping TypeName="ProjectEducationalPracticeModel.Repair_request">
               <MappingFragment StoreEntitySet="Repair_request">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Type_Equipment" ColumnName="Type_Equipment" />
-                <ScalarProperty Name="Serial_Number" ColumnName="Serial_Number" />
-                <ScalarProperty Name="Description_Problems" ColumnName="Description_Problems" />
-                <ScalarProperty Name="Id_Performer" ColumnName="Id_Performer" />
-                <ScalarProperty Name="Id_Fault" ColumnName="Id_Fault" />
-                <ScalarProperty Name="Id_Client" ColumnName="Id_Client" />
-                <ScalarProperty Name="Id_Prioriry" ColumnName="Id_Prioriry" />
-                <ScalarProperty Name="Id_Status" ColumnName="Id_Status" />
+                <ScalarProperty Name="Id_Equipment" ColumnName="Id_Equipment" />
                 <ScalarProperty Name="Id_Report" ColumnName="Id_Report" />
+                <ScalarProperty Name="Id_Status" ColumnName="Id_Status" />
+                <ScalarProperty Name="Id_Prioriry" ColumnName="Id_Prioriry" />
+                <ScalarProperty Name="Id_Client" ColumnName="Id_Client" />
+                <ScalarProperty Name="Id_Fault" ColumnName="Id_Fault" />
+                <ScalarProperty Name="Id_Performer" ColumnName="Id_Performer" />
+                <ScalarProperty Name="Description_Problems" ColumnName="Description_Problems" />
+                <ScalarProperty Name="Serial_Number" ColumnName="Serial_Number" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Report">
             <EntityTypeMapping TypeName="ProjectEducationalPracticeModel.Report">
               <MappingFragment StoreEntitySet="Report">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Expenses" ColumnName="Expenses" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Time__spent" ColumnName="Time _spent" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Resources">
             <EntityTypeMapping TypeName="ProjectEducationalPracticeModel.Resources">
               <MappingFragment StoreEntitySet="Resources">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="Id_Repair_reauest" ColumnName="Id_Repair_reauest" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id_Repair_reauest" ColumnName="Id_Repair_reauest" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Role">
             <EntityTypeMapping TypeName="ProjectEducationalPracticeModel.Role">
               <MappingFragment StoreEntitySet="Role">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Status">
             <EntityTypeMapping TypeName="ProjectEducationalPracticeModel.Status">
               <MappingFragment StoreEntitySet="Status">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="ProjectEducationalPracticeModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="User">
             <EntityTypeMapping TypeName="ProjectEducationalPracticeModel.User">
               <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Login" ColumnName="Login" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="IdRole" ColumnName="IdRole" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

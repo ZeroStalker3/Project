@@ -10,6 +10,8 @@
 
     <Grid>
         <Button 
+            Name="Back"
+            Click="Back_OnClick"
             Style="{StaticResource BtnTransparent}"/>
         <!-- меню действий-->
         <Grid>
@@ -28,7 +30,8 @@
                     <TextBlock Text="Редактирования заявок"
                                Width="180"/>
                     <Button Style="{StaticResource StyleNextPage}"
-                        Name="BtnAddEvaluation"/>
+                        Name="EditRequest"
+                        Click="EditRequest_OnClick"/>
                     </StackPanel>
 
                 <StackPanel Orientation="Horizontal">

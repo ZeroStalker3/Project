@@ -21,15 +21,15 @@ namespace Project.DataBase
         }
     
         public int Id { get; set; }
-        public int Type_Equipment { get; set; }
         public string Serial_Number { get; set; }
         public string Description_Problems { get; set; }
-        public int Id_Performer { get; set; }
+        public Nullable<int> Id_Performer { get; set; }
         public int Id_Fault { get; set; }
         public int Id_Client { get; set; }
-        public int Id_Prioriry { get; set; }
+        public Nullable<int> Id_Prioriry { get; set; }
         public int Id_Status { get; set; }
         public int Id_Report { get; set; }
+        public int Id_Equipment { get; set; }
     
         public virtual Client Client { get; set; }
         public virtual Equipment Equipment { get; set; }

@@ -155,10 +155,17 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PageForFunctionalRequirements\PageEditRequest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PageForFunctionalRequirements\PageAddRequest.xaml.cs">
       <DependentUpon>PageAddRequest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageForFunctionalRequirements\PageEditRequest.xaml.cs">
+      <DependentUpon>PageEditRequest.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
