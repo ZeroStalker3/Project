@@ -24,12 +24,15 @@
                         Text="Редактирование заявок "
                         Height="25"
                         FontSize="12pt"/>
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal"
+                                >
                     <TextBlock Text="Выберите заявку: "/>
                     <ComboBox 
                         Margin="0"
                         Name="ComboBox"
-                        SelectionChanged="ComboBox_OnSelectionChanged"/>
+                        SelectionChanged="ComboBox_OnSelectionChanged"
+                        />
+                        <Button Height="30" Name="Update" Click="Update_OnClick" Content="Обновить данные" Style="{StaticResource 'Accept Button'}"/>
                 </StackPanel>
                     </StackPanel>
                 <DataGrid
@@ -61,7 +64,7 @@
                         
                     </DataGrid.Columns>
                 </DataGrid>
-</StackPanel>
+            </StackPanel>
         </Grid>
     </Grid>
 </Page>

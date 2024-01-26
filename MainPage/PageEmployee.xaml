@@ -38,7 +38,9 @@
                     <TextBlock Text="Отслеживания статуса заявки"
                                Width="180"/>
                     <Button Style="{StaticResource StyleNextPage}"
-                            Name="BtnListStudent"
+                            Name="BtnTrackingStReq"
+                            Click="BtnTrackingStReq_OnClick"
+                            
                     />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">

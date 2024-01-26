@@ -1,0 +1,89 @@
+﻿<Page x:Class="Project.PageForFunctionalRequirements.PageTraking"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Project.PageForFunctionalRequirements"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PageTraking">
+
+    <Grid>
+        <StackPanel>
+        <Button Style="{StaticResource BtnTransparent}"
+                Name="Back"
+                Click="Back_OnClick"/>
+
+        <StackPanel
+            >
+            
+            <ComboBox Name="Box"
+                      SelectionChanged="Box_OnSelectionChanged"/>
+            <Grid>
+                <DataGrid
+                AutoGenerateColumns="False"
+                HorizontalAlignment="Center"
+                HorizontalContentAlignment="Center"
+                VerticalContentAlignment="Center"
+                VerticalScrollBarVisibility="Auto"
+                ClipboardCopyMode="None"
+                CanUserResizeColumns="False"
+                CanUserReorderColumns="False"
+                Height="220"
+                Name="List">
+                <DataGrid.Columns>
+                    <DataGridTextColumn
+                        Width="*"
+                        Header="Серийный номер"
+                        Binding="{Binding Serial_Number}"/>
+                    <DataGridTextColumn
+                        Width="*"
+                        Header="Проблема"
+                        Binding="{Binding Description_Problems}"/>
+                    <DataGridTextColumn
+                        Width="*"
+                        Header="Рабочий"
+                        Binding="{Binding Performer.Name}"/>
+                    <DataGridTextColumn
+                        Width="*"
+                        Header="Клиент"
+                        Binding="{Binding Client.Name}"/>
+                    <DataGridTextColumn
+                        Width="*"
+                        Header="Статус"
+                        Binding="{Binding Status.Name }"/>
+                        </DataGrid.Columns>
+                </DataGrid>
+
+                </Grid>
+        </StackPanel>
+            <DockPanel>
+                <StackPanel Orientation="Vertical">
+            <TextBlock
+                FontWeight="Bold"
+                Text="Фильтр по статусу:"
+                FontSize="11pt"/>
+            <RadioButton
+                Content="В ожидание"
+                Name="Pending"
+                Height="22"
+                Click="Pending_OnClick"
+                FontSize="11pt"/>
+            <RadioButton 
+                Content="В работе"
+                FontSize="11pt"
+                Name="Progress"
+                Click="Progress_OnClick"
+                IsChecked="True"/>
+            <RadioButton 
+                Content="Выполнено"
+                Name="Done"
+                Height="22"
+                Click="Done_OnClick"
+                FontSize="11pt"
+                IsChecked="True"/>
+            </StackPanel>
+                </DockPanel>
+        </StackPanel>
+    </Grid>
+</Page>

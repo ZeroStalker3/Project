@@ -32,11 +32,6 @@ namespace Project.PageForFunctionalRequirements
 
         }
 
-        private void Update_OnClick(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void Back_OnClick(object sender, RoutedEventArgs e)
         {
             FrameApp.frmObj.GoBack();
@@ -45,8 +40,14 @@ namespace Project.PageForFunctionalRequirements
         private void ComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             int select = Convert.ToInt32(ComboBox.SelectedValue);
-            List.ItemsSource = OdbConnectorHelper.entObj.Repair_request.Where(x => x.Id == select).ToList();
+            List.ItemsSource = OdbConnectorHelper.entObj.Repair_request.Where(x 
+                => x.Id == select).ToList();
             List.SelectedIndex = 0;
+
+        }
+
+        private void Update_OnClick(object sender, RoutedEventArgs e)
+        {
             OdbConnectorHelper.entObj.SaveChanges();
         }
     }

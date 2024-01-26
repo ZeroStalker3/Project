@@ -41,5 +41,10 @@ namespace Project.MainPage
         {
             FrameApp.frmObj.GoBack();
         }
+
+        private void BtnTrackingStReq_OnClick(object sender, RoutedEventArgs e)
+        {
+            FrameApp.frmObj.Navigate(new PageTraking());
+        }
     }
 }
