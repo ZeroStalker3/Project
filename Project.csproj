@@ -155,11 +155,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PageForFunctionalRequirements\PageEditRequest.xaml">
+    <Page Include="PageForFunctionalRequirements\PageTraking.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PageForFunctionalRequirements\PageTraking.xaml">
+    <Page Include="PageForFunctionalRequirements\PpageEditInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -168,11 +168,11 @@
     <Compile Include="PageForFunctionalRequirements\PageAddRequest.xaml.cs">
       <DependentUpon>PageAddRequest.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PageForFunctionalRequirements\PageEditRequest.xaml.cs">
-      <DependentUpon>PageEditRequest.xaml</DependentUpon>
-    </Compile>
     <Compile Include="PageForFunctionalRequirements\PageTraking.xaml.cs">
       <DependentUpon>PageTraking.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageForFunctionalRequirements\PpageEditInfo.xaml.cs">
+      <DependentUpon>PpageEditInfo.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

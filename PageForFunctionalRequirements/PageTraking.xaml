@@ -48,10 +48,25 @@
                         Width="*"
                         Header="Клиент"
                         Binding="{Binding Client.Name}"/>
-                    <DataGridTextColumn
-                        Width="*"
-                        Header="Статус"
-                        Binding="{Binding Status.Name }"/>
+                    <DataGridTemplateColumn Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ComboBox Name="CmbStatus" Loaded="CmbStatus_OnLoaded" SelectionChanged="CmbStatus_OnSelectionChanged"/>
+
+                                    </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn 
+                        Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Редактировать оценки"
+                                        Name="Edit"
+                                        Click="Edit_OnClick"
+                                        />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
                         </DataGrid.Columns>
                 </DataGrid>
 
@@ -85,5 +100,14 @@
             </StackPanel>
                 </DockPanel>
         </StackPanel>
+        <Button
+            Content="Сохранить"
+            Style="{StaticResource BtnTransparent}"
+            Name="BtnSave"
+            Click="BtnSave_OnClick"
+            Width="65"
+            VerticalAlignment="Bottom"
+            
+        />
     </Grid>
 </Page>

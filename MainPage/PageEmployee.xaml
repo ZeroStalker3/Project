@@ -21,23 +21,16 @@
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Добавление заявок"
                                Width="180"/>
-                    <Button Style="{StaticResource StyleNextPage}"
+                    <Button 
                             Name="BtnAddRequest"
                             Click ="BtnAddRequest_OnClick"
                     />
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Редактирования заявок"
-                               Width="180"/>
-                    <Button Style="{StaticResource StyleNextPage}"
-                        Name="EditRequest"
-                        Click="EditRequest_OnClick"/>
-                    </StackPanel>
 
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Отслеживания статуса заявки"
                                Width="180"/>
-                    <Button Style="{StaticResource StyleNextPage}"
+                    <Button 
                             Name="BtnTrackingStReq"
                             Click="BtnTrackingStReq_OnClick"
                             
@@ -46,14 +39,14 @@
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Назначить ответственное лицо"
                                Width="180"/>
-                    <Button Style="{StaticResource StyleNextPage}"
+                    <Button
                             Name="EditEval"
                     />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Статистика"
                                Width="180"/>
-                    <Button Style="{StaticResource StyleNextPage}"
+                    <Button 
                             Name="E"
                     />
                 </StackPanel>
