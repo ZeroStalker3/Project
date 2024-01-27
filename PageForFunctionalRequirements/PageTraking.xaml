@@ -13,10 +13,8 @@
         <Button Style="{StaticResource BtnTransparent}"
                 Name="Back"
                 Click="Back_OnClick"/>
-
         <StackPanel
             >
-            
             <ComboBox Name="Box"
                       SelectionChanged="Box_OnSelectionChanged"/>
             <Grid>
@@ -48,22 +46,18 @@
                         Width="*"
                         Header="Клиент"
                         Binding="{Binding Client.Name}"/>
-                    <DataGridTemplateColumn Width="*">
-                        <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <ComboBox Name="CmbStatus" Loaded="CmbStatus_OnLoaded" SelectionChanged="CmbStatus_OnSelectionChanged"/>
-
-                                    </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTemplateColumn 
+                    <DataGridTextColumn
+                        Width="*"
+                        Header="Статус"
+                        Binding="{Binding Status.Name}"/>
+                            <DataGridTemplateColumn 
                         Width="*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Button Content="Редактировать оценки"
                                         Name="Edit"
                                         Click="Edit_OnClick"
-                                        />
+                                />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>

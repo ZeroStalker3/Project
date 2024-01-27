@@ -23,31 +23,49 @@ namespace Project.PageForFunctionalRequirements
     /// </summary>
     public partial class PpageEditInfo : Page
     {
-        private int serialnumber;
+        private Repair_request _seRepairRequest;
         public PpageEditInfo(Repair_request repairRequest)
         {
             InitializeComponent();
-            serialnumber = Convert.ToInt32((repairRequest.Serial_Number));
+          
+            _seRepairRequest = repairRequest;
+            CmbStatus.SelectedValuePath = "Id";
+            CmbStatus.DisplayMemberPath = "Name";
+            CmbStatus.ItemsSource = OdbConnectorHelper.entObj.Status.ToList();
 
+            CmbPriority.SelectedValuePath = "Id";
+            CmbPriority.DisplayMemberPath = "Status";
+            CmbPriority.ItemsSource = OdbConnectorHelper.entObj.Priority.ToList();
 
-            //Name.Text = request.Name;
-
-            GridListStudent.ItemsSource = OdbConnectorHelper.entObj.Repair_request.Where(x => x.Id == serialnumber).ToList();
-            GridListStudent.SelectedIndex = 0;
-            GridListStudent.Columns[0].IsReadOnly = true;
+            CmbExecutor.SelectedValuePath = "Id";
+            CmbExecutor.DisplayMemberPath = "Name";
+            CmbExecutor.ItemsSource = OdbConnectorHelper.entObj.Performer.ToList();
         }
 
-        private void BtnSave_OnClick(object sender, RoutedEventArgs e)
-        {
-            
-            OdbConnectorHelper.entObj.SaveChanges();
-            MessageBox.Show("Данные успешно изменены",
-                "Уведомления", MessageBoxButton.OK, MessageBoxImage.Information);
-        }
-
-        private void Back_OnClick(object sender, RoutedEventArgs e)
+        private void BtnBack_OnClick(object sender, RoutedEventArgs e)
         {
             FrameApp.frmObj.GoBack();
+        }
+
+        private void BtnEditApplication_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (_seRepairRequest != null)
+            {
+                _seRepairRequest.Description_Problems = TxbProblem.Text;
+                _seRepairRequest.Priority = CmbPriority.SelectedItem as Priority;
+                _seRepairRequest.Status = CmbStatus.SelectedItem as Status;
+                _seRepairRequest.Performer = CmbExecutor.SelectedItem as Performer;
+
+                OdbConnectorHelper.entObj.SaveChanges();
+
+                MessageBox.Show("Заявка обновлена",
+                    "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                MessageBox.Show("Заявка не найдена",
+                    "Уведомление", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
     }
 }

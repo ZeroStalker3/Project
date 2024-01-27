@@ -22,21 +22,12 @@ namespace Project.PageForFunctionalRequirements
     /// </summary>
     public partial class PageTraking : Page
     {
-        private Dictionary<DataGridRow, object> selectedValues = new Dictionary<DataGridRow, object>();
         
         public PageTraking()
         {
             InitializeComponent();
 
-            Box.SelectedValuePath = "Id";
-            Box.DisplayMemberPath = "Serial_Number";
-            Box.ItemsSource = OdbConnectorHelper.entObj.Repair_request.ToList();
-
-            //CmbStatus.SelectedValuePath = "Id";
-            //CmbStatus.DisplayMemberPath = "Name";
-            //CmbStatus.ItemsSource = OdbConnectorHelper.entObj.Status.ToList();
-
-            //List.ItemsSource = OdbConnectorHelper.entObj.Repair_request.ToList();
+            List.ItemsSource = OdbConnectorHelper.entObj.Repair_request.ToList();
 
         }
 
@@ -85,42 +76,12 @@ namespace Project.PageForFunctionalRequirements
 
         private void Edit_OnClick(object sender, RoutedEventArgs e)
         {
-           // FrameApp.frmObj.Navigate(new PpageEditInfo((sender as Button).DataContext as Repair_request));
+            FrameApp.frmObj.Navigate(new PpageEditInfo((sender as Button).DataContext as Repair_request));
         }
 
         private void BtnSave_OnClick(object sender, RoutedEventArgs e)
         {
             OdbConnectorHelper.entObj.SaveChanges();
-        }
-
-        private void CmbStatus_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            int select = Convert.ToInt32(Box.SelectedValue);
-            List.ItemsSource = OdbConnectorHelper.entObj.Status.Where(x
-                => x.Id == select).ToList();
-            List.SelectedIndex = 0;
-        }
-
-        private void CmbStatus_OnLoaded(object sender, RoutedEventArgs e)
-        {
-            ComboBox cmbStatus = sender as ComboBox;
-
-            if (cmbStatus != null)
-            {
-                // Сохраняем выбранное значение
-                object selectedValue = cmbStatus.SelectedValue;
-
-                // Устанавливаем свойства
-                cmbStatus.SelectedValuePath = "Id";
-                cmbStatus.DisplayMemberPath = "Name";
-                cmbStatus.ItemsSource = OdbConnectorHelper.entObj.Status.ToList();
-
-                // Восстанавливаем выбранное значение, если оно было сохранено
-                if (selectedValue != null)
-                {
-                    cmbStatus.SelectedValue = selectedValue;
-                }
-            }
         }
     }
 }
