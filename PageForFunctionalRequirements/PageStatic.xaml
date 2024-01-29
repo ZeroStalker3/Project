@@ -1,0 +1,99 @@
+﻿<Page x:Class="Project.PageForFunctionalRequirements.PageStatic"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Project.PageForFunctionalRequirements"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PageStatic">
+
+    <Grid>
+        <StackPanel>
+        <Button Grid.Row="0"
+                Name="BtnBack"
+                Click="BtnBack_OnClick"
+                Style="{StaticResource BtnTransparent}"/>
+
+        <StackPanel>
+
+            <DataGrid 
+                      Name="ApplicationHistory"
+                      AutoGenerateColumns="False"
+                      HorizontalAlignment="Center"
+                      HorizontalContentAlignment="Center"
+                      VerticalContentAlignment="Center"
+                      VerticalScrollBarVisibility="Auto"
+                      ClipboardCopyMode="None"
+                      CanUserSortColumns="False"
+                      CanUserResizeColumns="False"
+                      CanUserReorderColumns="False"
+                      Height="220">
+                <DataGrid.Columns>
+                    <DataGridTextColumn
+                        Width="*"
+                        Header="Клиент"
+                        Binding="{Binding Client.Name}"/>
+                    <DataGridTextColumn
+                        Width="*"
+                        Header="Исполнитель"
+                        Binding="{Binding Performer.Name}"/>
+                    <DataGridTextColumn
+                        Width="*"
+                        Header="Заявка"
+                        Binding="{Binding Serial_Number}"/>
+                    <DataGridTextColumn
+                        Width="*"
+                        Header="Дата начала"
+                        Binding="{Binding Date, StringFormat='dd.MM.yyyy'}"/>
+                    <DataGridTextColumn
+                        Width="*"
+                        Header="Дата окончания"
+                        Binding="{Binding DateCompletion, StringFormat='dd.MM.yyyy'}"/>
+                        <DataGridTextColumn
+                        Width="*"
+                        Header="Статус"
+                        Binding="{Binding Status.Name}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <StackPanel
+                Margin="0,5,0,0"
+                Orientation="Horizontal">
+                <TextBlock Text="Заявок выполнено:"
+                           FontSize="12pt"/>
+                <TextBlock
+                    FontSize="10pt"
+                    FontStyle="Italic"
+                    Text="количество"
+                    Margin="5,0,0,0"
+                    Name="TxtTotal"/>
+            </StackPanel>
+            <StackPanel Grid.Row="0"
+                        Orientation="Horizontal">
+                <TextBlock Text="Среднее время выполнения заявки: "
+                           FontSize="10pt"
+                           VerticalAlignment="Center"/>
+                <TextBlock
+                    FontSize="10pt"
+                    FontStyle="Italic"
+                    Text="время"
+                    Margin="5,0,0,0"
+                    Name="TxtTime"/>
+            </StackPanel>
+            <StackPanel Grid.Row="0"
+                        Orientation="Horizontal">
+                <TextBlock Text="- Статистика по типам неисправностей: "
+                           FontSize="10pt"
+                           VerticalAlignment="Center"/>
+                <TextBlock
+                    FontSize="10pt"
+                    FontStyle="Italic"
+                    Text="тип"
+                    Margin="5,0,0,0"
+                    Name="TxtTipe"/>
+            </StackPanel>
+        </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

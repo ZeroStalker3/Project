@@ -15,8 +15,7 @@
                 Click="Back_OnClick"/>
         <StackPanel
             >
-            <ComboBox Name="Box"
-                      SelectionChanged="Box_OnSelectionChanged"/>
+            
             <Grid>
                 <DataGrid
                 AutoGenerateColumns="False"
@@ -54,7 +53,7 @@
                         Width="*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Content="Редактировать оценки"
+                                <Button Content="Редактировать"
                                         Name="Edit"
                                         Click="Edit_OnClick"
                                 />
@@ -63,45 +62,8 @@
                         </DataGridTemplateColumn>
                         </DataGrid.Columns>
                 </DataGrid>
-
                 </Grid>
         </StackPanel>
-            <DockPanel>
-                <StackPanel Orientation="Vertical">
-            <TextBlock
-                FontWeight="Bold"
-                Text="Фильтр по статусу:"
-                FontSize="11pt"/>
-            <RadioButton
-                Content="В ожидание"
-                Name="Pending"
-                Height="22"
-                Click="Pending_OnClick"
-                FontSize="11pt"/>
-            <RadioButton 
-                Content="В работе"
-                FontSize="11pt"
-                Name="Progress"
-                Click="Progress_OnClick"
-                IsChecked="True"/>
-            <RadioButton 
-                Content="Выполнено"
-                Name="Done"
-                Height="22"
-                Click="Done_OnClick"
-                FontSize="11pt"
-                IsChecked="True"/>
-            </StackPanel>
-                </DockPanel>
         </StackPanel>
-        <Button
-            Content="Сохранить"
-            Style="{StaticResource BtnTransparent}"
-            Name="BtnSave"
-            Click="BtnSave_OnClick"
-            Width="65"
-            VerticalAlignment="Bottom"
-            
-        />
     </Grid>
 </Page>

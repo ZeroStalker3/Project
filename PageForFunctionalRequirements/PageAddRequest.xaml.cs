@@ -73,7 +73,8 @@ namespace Project.PageForFunctionalRequirements
                     Fault = FaultC.SelectedItem as Fault,
                     Client = client,
                     Status = Status.SelectedItem as Status,
-                    Report = rep
+                    Report = rep,
+                    Date = DateTime.Parse(dataupdate)
                 };
 
                 OdbConnectorHelper.entObj.Repair_request.Add(req);

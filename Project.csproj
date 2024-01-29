@@ -151,7 +151,27 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="PageForFunctionalRequirements\PageAddEmploye.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PageForFunctionalRequirements\PageAddRequest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageForFunctionalRequirements\PageEditForAddEmploye\PageEditAdd.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageForFunctionalRequirements\PageEditForAddEmploye\PageMessageAndComment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageForFunctionalRequirements\PageStatic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageForFunctionalRequirements\PageTrackingBids.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -163,17 +183,39 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PageForManager\PageListRequest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PageForFunctionalRequirements\ClassHelp\RepairRequest.cs" />
+    <Compile Include="PageForFunctionalRequirements\PageAddEmploye.xaml.cs">
+      <DependentUpon>PageAddEmploye.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PageForFunctionalRequirements\PageAddRequest.xaml.cs">
       <DependentUpon>PageAddRequest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageForFunctionalRequirements\PageEditForAddEmploye\PageEditAdd.xaml.cs">
+      <DependentUpon>PageEditAdd.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageForFunctionalRequirements\PageEditForAddEmploye\PageMessageAndComment.xaml.cs">
+      <DependentUpon>PageMessageAndComment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageForFunctionalRequirements\PageStatic.xaml.cs">
+      <DependentUpon>PageStatic.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageForFunctionalRequirements\PageTrackingBids.xaml.cs">
+      <DependentUpon>PageTrackingBids.xaml</DependentUpon>
     </Compile>
     <Compile Include="PageForFunctionalRequirements\PageTraking.xaml.cs">
       <DependentUpon>PageTraking.xaml</DependentUpon>
     </Compile>
     <Compile Include="PageForFunctionalRequirements\PpageEditInfo.xaml.cs">
       <DependentUpon>PpageEditInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageForManager\PageListRequest.xaml.cs">
+      <DependentUpon>PageListRequest.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

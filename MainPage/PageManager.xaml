@@ -9,8 +9,44 @@
       Title="PageManager">
 
     <Grid>
-        <StackPanel>
+        <Button 
+        Name="Back"
+        Click="Back_OnClick"
+        Style="{StaticResource BtnTransparent}"/>
+    <!-- меню действий-->
 
-        </StackPanel>
+        <StackPanel HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+
+            </StackPanel>
+        <StackPanel
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Отслеживание заявок"
+                           Width="180"/>
+                <Button
+                    Name="Request"
+                    Click="Request_OnClick"
+                />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Назначить ответственное лицо"
+                           Width="180"/>
+                <Button
+                    Name="EditEval"
+                  Click="EditEval_OnClick"
+                />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Статистика"
+                           Width="180"/>
+                <Button 
+                    Name="Static"
+                    Click="Static_OnClick"
+                />
+            </StackPanel>
+</StackPanel>
     </Grid>
 </Page>

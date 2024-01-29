@@ -28,7 +28,7 @@
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Отслеживания статуса заявки"
+                    <TextBlock Text="Редактирование заявок"
                                Width="180"/>
                     <Button 
                             Name="BtnTrackingStReq"
@@ -36,18 +36,30 @@
                             
                     />
                 </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Отслеживание заявок"
+                               Width="180"/>
+                    <Button
+                        Name="Request"
+                        Click="Request_OnClick"
+                    />
+                </StackPanel>
+
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Назначить ответственное лицо"
                                Width="180"/>
                     <Button
                             Name="EditEval"
+                            Click="EditEval_OnClick"
                     />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Статистика"
                                Width="180"/>
                     <Button 
-                            Name="E"
+                            Name="Static"
+                            Click="Static_OnClick"
                     />
                 </StackPanel>
             </StackPanel>

@@ -30,6 +30,9 @@ namespace Project.DataBase
         public int Id_Status { get; set; }
         public int Id_Report { get; set; }
         public int Id_Equipment { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
+        public string Comment { get; set; }
+        public Nullable<System.DateTime> DateCompletion { get; set; }
     
         public virtual Client Client { get; set; }
         public virtual Equipment Equipment { get; set; }

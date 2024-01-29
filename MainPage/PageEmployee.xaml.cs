@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Project.DataFilesApp;
 using Project.PageForFunctionalRequirements;
+using Project.PageForFunctionalRequirements.PageEditForAddEmploye;
 
 namespace Project.MainPage
 {
@@ -40,6 +41,21 @@ namespace Project.MainPage
         private void BtnTrackingStReq_OnClick(object sender, RoutedEventArgs e)
         {
             FrameApp.frmObj.Navigate(new PageTraking());
+        }
+
+        private void EditEval_OnClick(object sender, RoutedEventArgs e)
+        {
+            FrameApp.frmObj.Navigate(new PageAddEmploye());
+        }
+
+        private void Request_OnClick(object sender, RoutedEventArgs e)
+        {
+            FrameApp.frmObj.Navigate(new PageTrackingBids());
+        }
+
+        private void Static_OnClick(object sender, RoutedEventArgs e)
+        {
+            FrameApp.frmObj.Navigate(new PageStatic());
         }
     }
 }

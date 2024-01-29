@@ -55,6 +55,9 @@
           <Property Name="Id_Status" Type="int" Nullable="false" />
           <Property Name="Id_Report" Type="int" Nullable="false" />
           <Property Name="Id_Equipment" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="Comment" Type="nvarchar(max)" />
+          <Property Name="DateCompletion" Type="datetime" />
         </EntityType>
         <EntityType Name="Report">
           <Key>
@@ -374,6 +377,9 @@
           <Property Name="Id_Status" Type="Int32" Nullable="false" />
           <Property Name="Id_Report" Type="Int32" Nullable="false" />
           <Property Name="Id_Equipment" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateCompletion" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Client" Relationship="ProjectEducationalPracticeModel.FK_Repair_request_Client" FromRole="Repair_request" ToRole="Client" />
           <NavigationProperty Name="Equipment" Relationship="ProjectEducationalPracticeModel.FK_Repair_request_Equipment" FromRole="Repair_request" ToRole="Equipment" />
           <NavigationProperty Name="Fault" Relationship="ProjectEducationalPracticeModel.FK_Repair_request_Fault" FromRole="Repair_request" ToRole="Fault" />
@@ -597,6 +603,9 @@
           <EntitySetMapping Name="Repair_request">
             <EntityTypeMapping TypeName="ProjectEducationalPracticeModel.Repair_request">
               <MappingFragment StoreEntitySet="Repair_request">
+                <ScalarProperty Name="DateCompletion" ColumnName="DateCompletion" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="Id_Equipment" ColumnName="Id_Equipment" />
                 <ScalarProperty Name="Id_Report" ColumnName="Id_Report" />
                 <ScalarProperty Name="Id_Status" ColumnName="Id_Status" />
